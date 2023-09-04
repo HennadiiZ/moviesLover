@@ -2,6 +2,9 @@ import { useState } from 'react';
 import tempMovieData from './data/tempMovieData';
 import tempWatchedData from './data/tempMovieData';
 
+import NavBar from './components/NavBar';
+import Main from './components/Main';
+
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
@@ -18,7 +21,7 @@ export default function App() {
 
   return (
     <>
-      <nav className='nav-bar'>
+      {/* <nav className='nav-bar'>
         <div className='logo'>
           <span role='img'>🍿</span>
           <h1>MoviesLover</h1>
@@ -33,9 +36,23 @@ export default function App() {
         <p className='num-results'>
           Found <strong>{movies.length}</strong> results
         </p>
-      </nav>
+      </nav> */}
 
-      <main className='main'>
+      <NavBar movies={movies} query={query} setQuery={setQuery} />
+
+      <Main
+        isOpen1={isOpen1}
+        setIsOpen1={setIsOpen1}
+        movies={movies}
+        isOpen2={isOpen2}
+        setIsOpen2={setIsOpen2}
+        watched={watched}
+        avgImdbRating={avgImdbRating}
+        avgUserRating={avgUserRating}
+        avgRuntime={avgRuntime}
+      />
+
+      {/* <main className='main'>
         <div className='box'>
           <button
             className='btn-toggle'
@@ -117,7 +134,7 @@ export default function App() {
             </>
           )}
         </div>
-      </main>
+      </main> */}
     </>
   );
 }
