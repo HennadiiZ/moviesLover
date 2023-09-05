@@ -9,6 +9,9 @@ import Logo from './components/Logo';
 import Search from './components/Search';
 import NumberResults from './components/NumberResults';
 
+import ListBox from './components/ListBox';
+import WatchedBox from './components/WatchedBox';
+
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
@@ -23,11 +26,15 @@ export default function App() {
         <Search />
         <NumberResults movies={movies} />
       </NavBar>
-      <Main
+      {/* <Main
         movies={movies}
         tempWatchedData={tempWatchedData}
         average={average}
-      />
+      /> */}
+      <Main>
+        <ListBox movies={movies} />
+        <WatchedBox average={average} tempWatchedData={tempWatchedData} />
+      </Main>
     </>
   );
 }
