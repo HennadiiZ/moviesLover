@@ -1,20 +1,13 @@
 import MovieYear from './MovieYear';
 
-export default function Movie({ movie }) {
+export default function Movie({ movie, children }) {
   return (
     <li>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3>{movie.Title}</h3>
 
-      <MovieYear movie={movie} />
-      {/* <div>
-        <p>
-          <span>🗓</span>
-          <span>{movie.Year}</span>
-        </p>
-      </div> */}
+      {/* <MovieYear movie={movie} /> */}
+      {children}
     </li>
   );
 }
-
-//MovieYear

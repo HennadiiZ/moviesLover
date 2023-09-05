@@ -48,8 +48,8 @@ export default function App() {
             watched={watched}
             setWatched={setWatched}
           />
-          {/* <WatchedMovieList watched={watched} /> */}
-          <MovieList movies={watched} />
+          <WatchedMovieList movies={watched} />
+          {/* <MovieList movies={watched} /> */}
         </Box>
 
         {/* <WatchedBox average={average} tempWatchedData={tempWatchedData} /> */}
