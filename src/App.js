@@ -31,6 +31,7 @@ export default function App() {
         <Box>
           <MovieList movies={movies} />
         </Box>
+        {/* <Box element={<MovieList movies={movies} />} /> */}
 
         <Box>
           <Summary
