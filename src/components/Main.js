@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import ListBox from './ListBox';
-import WatchedBox from './WatchedBox';
+// import ListBox from './ListBox';
+// import WatchedBox from './WatchedBox';
 
 export default function Main({ movies, tempWatchedData, average, children }) {
   //   const [watched, setWatched] = useState(tempWatchedData);
