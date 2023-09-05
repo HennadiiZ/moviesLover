@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import tempMovieData from '../data/tempMovieData';
+// import { useState } from 'react';
+// import tempMovieData from '../data/tempMovieData';
 import Movie from './Movie';
 
 export default function MovieList({ movies }) {
