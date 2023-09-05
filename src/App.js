@@ -4,15 +4,11 @@ import tempWatchedData from './data/tempMovieData';
 
 import NavBar from './components/NavBar';
 import Main from './components/Main';
-
 import Logo from './components/Logo';
 import Search from './components/Search';
 import NumberResults from './components/NumberResults';
-
 import Box from './components/Box';
-import WatchedBox from './components/WatchedBox';
 import MovieList from './components/MovieList';
-
 import Summary from './components/Summary';
 import WatchedMovieList from './components/WatchedMovieList';
 
@@ -25,19 +21,13 @@ export default function App() {
 
   return (
     <>
-      {/* <NavBar movies={movies} /> */}
       <NavBar>
         <Logo />
         <Search />
         <NumberResults movies={movies} />
       </NavBar>
-      {/* <Main
-        movies={movies}
-        tempWatchedData={tempWatchedData}
-        average={average}
-      /> */}
+
       <Main>
-        {/* <ListBox movies={movies} /> */}
         <Box>
           <MovieList movies={movies} />
         </Box>
@@ -49,10 +39,7 @@ export default function App() {
             setWatched={setWatched}
           />
           <WatchedMovieList movies={watched} />
-          {/* <MovieList movies={watched} /> */}
         </Box>
-
-        {/* <WatchedBox average={average} tempWatchedData={tempWatchedData} /> */}
       </Main>
     </>
   );

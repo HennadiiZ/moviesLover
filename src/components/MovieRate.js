@@ -1,6 +1,7 @@
-export default function MovieRate({ movie }) {
+export default function MovieRate({ movie, children }) {
   return (
     <div>
+      {children}
       <p>
         <span>⭐️</span>
         <span>{movie.imdbRating}</span>

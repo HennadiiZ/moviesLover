@@ -1,3 +1,5 @@
+import MovieRate from './MovieRate';
+
 export default function Summary({ average, watched, setWatched }) {
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
   const avgUserRating = average(watched.map((movie) => movie.userRating));
@@ -24,6 +26,13 @@ export default function Summary({ average, watched, setWatched }) {
           <span>{avgRuntime} min</span>
         </p>
       </div>
+
+      {/* <MovieRate>
+        <p>
+          <span>#️⃣</span>
+          <span>{watched.length} movies</span>
+        </p>
+      </MovieRate> */}
     </div>
   );
 }
