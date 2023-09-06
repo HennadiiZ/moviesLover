@@ -17,24 +17,25 @@ const textStyle = {
 
 export default function StarRating({ maxRating }) {
   const [rating, setRating] = useState(0);
-  //   const [full, setFull] = useState(false);
+  const [tempRating, setTempRating] = useState(0);
 
-  function clickHandler(i) {
-    setRating(i + 1);
-    console.log(i + 1);
-    // if (i) {
-    //   setFull(true);
-    // }
+  function ratingkHandler(rating) {
+    setRating(rating);
   }
 
   return (
     <div style={containerStyle}>
       <div style={starContainerStyle}>
         {Array.from({ length: maxRating }, (_, i) => (
-          //   <span style={textStyle}>S {i + 1}</span>
-          <Star key={i} click={() => clickHandler(i)} full={rating >= i + 1} />
+          <Star
+            key={i}
+            full={tempRating ? tempRating >= i + 1 : rating >= i + 1}
+            click={() => ratingkHandler(i + 1)}
+            onHoverIn={() => setTempRating(i + 1)}
+            onHoverOut={() => setTempRating(0)}
+          />
         ))}
-        <p style={textStyle}>___{rating || ''}</p>
+        <p style={textStyle}>{tempRating || rating || ''}</p>
       </div>
     </div>
   );
@@ -47,9 +48,15 @@ const starStyle = {
   cursor: 'pointer',
 };
 
-function Star({ click, full }) {
+function Star({ click, full, onHoverIn, onHoverOut }) {
   return (
-    <span onClick={click} role='button' style={starStyle}>
+    <span
+      onClick={click}
+      onMouseEnter={onHoverIn}
+      onMouseLeave={onHoverOut}
+      role='button'
+      style={starStyle}
+    >
       {full ? (
         <svg
           xmlns='http://www.w3.org/2000/svg'
