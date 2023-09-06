@@ -48,6 +48,7 @@ export default function App() {
         expandButtonText='Show text'
         collapseButtonText='hide text'
         buttonColor='green'
+        className='box'
       >
         Space travel is the ultimate adventure! Imagine soaring past the stars
         and exploring new worlds. It's the stuff of dreams and science fiction,
@@ -71,7 +72,6 @@ export default function App() {
 
       <TextExpander
         expanded={true}
-        className='box'
         collapsedNumWords={20}
         expandButtonText='Show text'
         collapseButtonText='Collapse text'

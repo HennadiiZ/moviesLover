@@ -393,3 +393,10 @@ EMPTY STAR
 </svg>
 
 */
+
+.box {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  background-color: #f7f7f7;
+}

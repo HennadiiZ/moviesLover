@@ -3,19 +3,19 @@ import { useState } from 'react';
 export default function TextExpander({
   expanded = false,
   collapsedNumWords = 10,
-  expandButtonText,
-  collapseButtonText,
+  expandButtonText = 'Show',
+  collapseButtonText = 'Collapse',
   buttonColor = '#ff6622',
+  className,
   children,
 }) {
+  //   const initText = expanded ? children : children.split(' ').slice(0, collapsedNumWords).join(' ');
   const initText = children.split(' ').slice(0, collapsedNumWords).join(' ');
-  //   const [showText, setShowText] = useState(false);
   const [showText, setShowText] = useState(expanded);
   const [text, setText] = useState(expanded ? children : initText);
 
   function expandTextHandler() {
     if (showText) {
-      //   setText((currentText) => currentText.split(' ').slice(0, 10).join(' '));
       setText(initText);
     } else {
       setText(children);
@@ -25,7 +25,7 @@ export default function TextExpander({
   }
 
   return (
-    <div>
+    <div className={className}>
       <p>{text}</p>
 
       <button
