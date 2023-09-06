@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 export default function TextExpander({
+  expanded = false,
   collapsedNumWords = 10,
   expandButtonText,
   collapseButtonText,
@@ -8,8 +9,9 @@ export default function TextExpander({
   children,
 }) {
   const initText = children.split(' ').slice(0, collapsedNumWords).join(' ');
-  const [showText, setShowText] = useState(false);
-  const [text, setText] = useState(initText);
+  //   const [showText, setShowText] = useState(false);
+  const [showText, setShowText] = useState(expanded);
+  const [text, setText] = useState(expanded ? children : initText);
 
   function expandTextHandler() {
     if (showText) {
