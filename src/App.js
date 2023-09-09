@@ -19,16 +19,19 @@ const average = (arr) =>
 const apiKey2 = '17b3c4c2';
 const apiKey = '63ad7598';
 
-export default function App() {
-  const [movies, setMovies] = useState(tempMovieData);
-  const [watched, setWatched] = useState(tempWatchedData);
+// http://www.omdbapi.com/?apikey=[yourkey]&
+// fetch(`http://www.omdbapi.com/?apikey=${apiKey}&`);
 
-  // http://www.omdbapi.com/?apikey=[yourkey]&
-  // fetch(`http://www.omdbapi.com/?apikey=${apiKey}&`);
+export default function App() {
+  // const [movies, setMovies] = useState(tempMovieData);
+  // const [watched, setWatched] = useState(tempWatchedData);
+
+  const [movies, setMovies] = useState([]);
+  const [watched, setWatched] = useState([]);
 
   fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=interstellar`)
     .then((res) => res.json())
-    .then((res) => console.log(res));
+    .then((res) => setMovies(res.Search));
 
   return (
     <>
@@ -58,7 +61,7 @@ export default function App() {
         expandButtonText='Show text'
         collapseButtonText='hide text'
         buttonColor='green'
-        className='box'
+        className='box2'
       >
         Space travel is the ultimate adventure! Imagine soaring past the stars
         and exploring new worlds. It's the stuff of dreams and science fiction,
