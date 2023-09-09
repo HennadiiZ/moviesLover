@@ -25,4 +25,6 @@ root.render(
       onSetRating={{}}
     />
   </React.StrictMode>
+
+  // <App />
 );
