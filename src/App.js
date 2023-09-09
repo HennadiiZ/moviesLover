@@ -16,9 +16,19 @@ import TextExpander from './components/TextExpander';
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
+const apiKey2 = '17b3c4c2';
+const apiKey = '63ad7598';
+
 export default function App() {
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
+
+  // http://www.omdbapi.com/?apikey=[yourkey]&
+  // fetch(`http://www.omdbapi.com/?apikey=${apiKey}&`);
+
+  fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=interstellar`)
+    .then((res) => res.json())
+    .then((res) => console.log(res));
 
   return (
     <>
