@@ -21,9 +21,6 @@ const average = (arr) =>
 const apiKey2 = '17b3c4c2';
 const apiKey = '63ad7598';
 
-// http://www.omdbapi.com/?apikey=[yourkey]&
-// fetch(`http://www.omdbapi.com/?apikey=${apiKey}&`);
-
 export default function App() {
   // const [movies, setMovies] = useState(tempMovieData);
   // const [watched, setWatched] = useState(tempWatchedData);
@@ -32,34 +29,10 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const tempQuery = 'interstellar';
-
+  const [showMovie, setShowMovie] = useState(false);
   const [query, setQuery] = useState('');
-  // const query = 'intersteugykllar';
-
-  // useEffect(() => {
-  //   console.log('after initial render'); // 2
-  // }, []);
-
-  // useEffect(() => {
-  //   console.log('afrer every render'); // 3
-  // });
-
-  // console.log('during render'); // 1
 
   useEffect(() => {
-    // async function fetchData() {
-    //   setIsLoading(true);
-    //   const response = await fetch(
-    //     `http://www.omdbapi.com/?apikey=${apiKey}&s=${query}`
-    //   );
-    //   const data = await response.json();
-    //   setMovies(data.Search);
-    //   setIsLoading(false);
-    //   // console.log('movies', movies); // []
-    // }
-    // // console.log('movies', movies); // []
-    // fetchData();
-
     async function fetchData() {
       try {
         setIsLoading(true);
@@ -79,16 +52,27 @@ export default function App() {
         }
         setMovies(data.Search);
       } catch (err) {
-        console.error(err.message);
+        // console.error(err.message);
         setError(err.message);
       } finally {
         setIsLoading(false);
       }
     }
+
+    if (!query.length) {
+      setMovies([]);
+      setError('');
+      return;
+    }
+
     fetchData();
   }, [query]);
 
-  // console.log('movies', movies); // [not empty]
+  function showMovieHandler(id) {
+    console.log('!!!');
+    console.log(id);
+    setShowMovie(true);
+  }
 
   return (
     <>
@@ -103,20 +87,36 @@ export default function App() {
 
         <Box>
           {isLoading && <Loader />}
-          {!isLoading && !error && <MovieList movies={movies} />}
+          {!isLoading && !error && (
+            <MovieList movies={movies} onShowMovie={showMovieHandler} />
+          )}
           {error && <ErrorMessage err={error} />}
         </Box>
 
         {/* <Box element={<MovieList movies={movies} />} /> */}
 
-        <Box>
+        {/* <Box>
           <Summary
             average={average}
             watched={watched}
             setWatched={setWatched}
           />
           <WatchedMovieList movies={watched} />
-        </Box>
+        </Box> */}
+        {!showMovie ? (
+          <Box>
+            <Summary
+              average={average}
+              watched={watched}
+              setWatched={setWatched}
+            />
+            <WatchedMovieList movies={watched} />
+          </Box>
+        ) : (
+          <Box>
+            <p>!!!</p>
+          </Box>
+        )}
       </Main>
 
       <TextExpander
