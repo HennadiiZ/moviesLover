@@ -1,11 +1,15 @@
 import Movie from './Movie';
 import MovieYear from './MovieYear';
 
-export default function MovieList({ movies, onShowMovie }) {
+export default function MovieList({ movies, onSelectedMovie }) {
   return (
-    <ul className='list'>
+    <ul className='list list-movies'>
       {movies?.map((movie) => (
-        <Movie onShowMovie={onShowMovie} movie={movie} key={movie.imdbID}>
+        <Movie
+          onSelectedMovie={onSelectedMovie}
+          movie={movie}
+          key={movie.imdbID}
+        >
           <MovieYear movie={movie} />
         </Movie>
       ))}

@@ -14,6 +14,7 @@ import WatchedMovieList from './components/WatchedMovieList';
 import TextExpander from './components/TextExpander';
 import Loader from './components/Loader';
 import ErrorMessage from './components/ErrorMessage';
+import MovieDetails from './components/MovieDetails';
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -29,9 +30,8 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const tempQuery = 'interstellar';
-  const [showMovie, setShowMovie] = useState(false);
-  const [query, setQuery] = useState('');
-  const [selectedMovie, setSelectedMovie] = useState([]);
+  const [query, setQuery] = useState(tempQuery);
+  const [selectedId, setSelectedId] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -69,11 +69,33 @@ export default function App() {
     fetchData();
   }, [query]);
 
-  function showMovieHandler(id) {
-    setShowMovie(true);
-    const movie = movies.find((movie) => movie.imdbID === id);
-    console.log(movie);
-    setSelectedMovie(movie);
+  function showSelectedMovieHandler(id) {
+    // const movie = movies.find((movie) => movie.imdbID === id);
+    // console.log(movie);
+    console.log(id);
+    setSelectedId((movieId) => (movieId === id ? null : id));
+
+    // async function fetchMovie() {
+    //   try {
+    //     const response = await fetch(
+    //       `http://www.omdbapi.com/?apikey=${apiKey}&i=${selectedId}`
+    //     );
+    //     if (!response.ok) {
+    //       throw new Error('Network response was not ok');
+    //     }
+    //     const data = await response.json();
+    //     console.log(data);
+    //     if (data.Response === 'True') {
+    //       // setMovie(data);
+    //     } else {
+    //       // setMovie(null);
+    //     }
+    //   } catch (error) {
+    //     console.error('Error fetching movie:', error);
+    //     // setMovie(null);
+    //   }
+    // }
+    // fetchMovie();
   }
 
   return (
@@ -85,28 +107,25 @@ export default function App() {
       </NavBar>
 
       <Main>
-        {/* <Box>{isLoading ? <Loader /> : <MovieList movies={movies} />}</Box> */}
-
         <Box>
           {isLoading && <Loader />}
           {!isLoading && !error && (
-            <MovieList movies={movies} onShowMovie={showMovieHandler} />
+            <MovieList
+              movies={movies}
+              onSelectedMovie={showSelectedMovieHandler}
+            />
           )}
           {error && <ErrorMessage err={error} />}
         </Box>
 
-        {/* <Box element={<MovieList movies={movies} />} /> */}
-
-        {/* <Box>
-          <Summary
-            average={average}
-            watched={watched}
-            setWatched={setWatched}
-          />
-          <WatchedMovieList movies={watched} />
-        </Box> */}
-
-        {!showMovie ? (
+        {selectedId ? (
+          <Box>
+            <MovieDetails
+              selectedId={selectedId}
+              setSelectedId={setSelectedId}
+            />
+          </Box>
+        ) : (
           <Box>
             <Summary
               average={average}
@@ -114,13 +133,6 @@ export default function App() {
               setWatched={setWatched}
             />
             <WatchedMovieList movies={watched} />
-          </Box>
-        ) : (
-          <Box>
-            <section className='details'>
-              <div className='header'>{selectedMovie.Title}</div>
-              <img src={selectedMovie.Poster} alt={selectedMovie.Title} />
-            </section>
           </Box>
         )}
       </Main>
