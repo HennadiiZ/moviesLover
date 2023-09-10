@@ -31,6 +31,7 @@ export default function App() {
   const tempQuery = 'interstellar';
   const [showMovie, setShowMovie] = useState(false);
   const [query, setQuery] = useState('');
+  const [selectedMovie, setSelectedMovie] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -69,9 +70,10 @@ export default function App() {
   }, [query]);
 
   function showMovieHandler(id) {
-    console.log('!!!');
-    console.log(id);
     setShowMovie(true);
+    const movie = movies.find((movie) => movie.imdbID === id);
+    console.log(movie);
+    setSelectedMovie(movie);
   }
 
   return (
@@ -103,6 +105,7 @@ export default function App() {
           />
           <WatchedMovieList movies={watched} />
         </Box> */}
+
         {!showMovie ? (
           <Box>
             <Summary
@@ -114,7 +117,10 @@ export default function App() {
           </Box>
         ) : (
           <Box>
-            <p>!!!</p>
+            <section className='details'>
+              <div className='header'>{selectedMovie.Title}</div>
+              <img src={selectedMovie.Poster} alt={selectedMovie.Title} />
+            </section>
           </Box>
         )}
       </Main>
@@ -161,4 +167,4 @@ export default function App() {
   );
 }
 
-//  Building a Reusable Star Rating Component
+//================
