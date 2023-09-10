@@ -31,8 +31,20 @@ export default function App() {
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const query = 'interstellar';
+  const tempQuery = 'interstellar';
+
+  const [query, setQuery] = useState('');
   // const query = 'intersteugykllar';
+
+  // useEffect(() => {
+  //   console.log('after initial render'); // 2
+  // }, []);
+
+  // useEffect(() => {
+  //   console.log('afrer every render'); // 3
+  // });
+
+  // console.log('during render'); // 1
 
   useEffect(() => {
     // async function fetchData() {
@@ -51,6 +63,7 @@ export default function App() {
     async function fetchData() {
       try {
         setIsLoading(true);
+        setError('');
         const response = await fetch(
           `http://www.omdbapi.com/?apikey=${apiKey}&s=${query}`
         );
@@ -62,7 +75,7 @@ export default function App() {
         const data = await response.json();
 
         if (data.Response === 'False') {
-          throw new Error('no such movie');
+          throw new Error('movie not found');
         }
         setMovies(data.Search);
       } catch (err) {
@@ -73,7 +86,7 @@ export default function App() {
       }
     }
     fetchData();
-  }, []);
+  }, [query]);
 
   // console.log('movies', movies); // [not empty]
 
@@ -81,7 +94,7 @@ export default function App() {
     <>
       <NavBar>
         <Logo />
-        <Search />
+        <Search query={query} setQuery={setQuery} />
         <NumberResults movies={movies} />
       </NavBar>
 
