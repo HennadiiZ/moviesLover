@@ -70,32 +70,8 @@ export default function App() {
   }, [query]);
 
   function showSelectedMovieHandler(id) {
-    // const movie = movies.find((movie) => movie.imdbID === id);
-    // console.log(movie);
-    console.log(id);
+    // console.log(id);
     setSelectedId((movieId) => (movieId === id ? null : id));
-
-    // async function fetchMovie() {
-    //   try {
-    //     const response = await fetch(
-    //       `http://www.omdbapi.com/?apikey=${apiKey}&i=${selectedId}`
-    //     );
-    //     if (!response.ok) {
-    //       throw new Error('Network response was not ok');
-    //     }
-    //     const data = await response.json();
-    //     console.log(data);
-    //     if (data.Response === 'True') {
-    //       // setMovie(data);
-    //     } else {
-    //       // setMovie(null);
-    //     }
-    //   } catch (error) {
-    //     console.error('Error fetching movie:', error);
-    //     // setMovie(null);
-    //   }
-    // }
-    // fetchMovie();
   }
 
   return (
@@ -123,6 +99,7 @@ export default function App() {
             <MovieDetails
               selectedId={selectedId}
               setSelectedId={setSelectedId}
+              apiKey={apiKey}
             />
           </Box>
         ) : (
