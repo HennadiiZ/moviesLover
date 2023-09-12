@@ -23,7 +23,7 @@ export default function App() {
 
   useEffect(
     function () {
-      // const controller = new AbortController();
+      const controller = new AbortController();
 
       async function fetchMovies() {
         try {
@@ -31,7 +31,8 @@ export default function App() {
           setError('');
 
           const res = await fetch(
-            `http://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`
+            `http://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`,
+            { signal: controller.signal }
           );
 
           if (!res.ok)
@@ -61,9 +62,9 @@ export default function App() {
       handleCloseMovie();
       fetchMovies();
 
-      // return function () {
-      //   controller.abort();
-      // };
+      return function () {
+        controller.abort();
+      };
     },
     [query]
   );
