@@ -26,7 +26,7 @@ export default function App() {
   // const [movies, setMovies] = useState(tempMovieData);
   // const [watched, setWatched] = useState(tempWatchedData);
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
+  const [watched, setWatched] = useState([]); //-------------
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const tempQuery = 'interstellar';
@@ -74,6 +74,11 @@ export default function App() {
     setSelectedId((movieId) => (movieId === id ? null : id));
   }
 
+  function AddWatchedMovieHandler(movie) {
+    setSelectedId(null);
+    setWatched((watched) => [...watched, movie]);
+  }
+
   return (
     <>
       <NavBar>
@@ -100,6 +105,8 @@ export default function App() {
               selectedId={selectedId}
               setSelectedId={setSelectedId}
               apiKey={apiKey}
+              onAddWatched={AddWatchedMovieHandler}
+              watched={watched}
             />
           </Box>
         ) : (

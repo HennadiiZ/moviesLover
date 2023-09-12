@@ -2,9 +2,24 @@ import { useState, useEffect } from 'react';
 import StarRating from './StarRating';
 import Loader from './Loader';
 
-export default function MovieDetails({ selectedId, setSelectedId, apiKey }) {
+export default function MovieDetails({
+  selectedId,
+  setSelectedId,
+  apiKey,
+  onAddWatched,
+  watched,
+}) {
   const [selectedMovie, setSelectedMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [userRating, setUserRating] = useState('');
+
+  const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
+  const watchedUserRating = watched.find(
+    (movie) => movie.imdbID === selectedId
+  )?.userRating;
+
+  // console.log(isWatched);
+  // console.log(watched);
 
   const {
     Title: title,
@@ -46,6 +61,26 @@ export default function MovieDetails({ selectedId, setSelectedId, apiKey }) {
     fetchMovie();
   }, [selectedId]);
 
+  function addHandler() {
+    const newWatchedMovie = {
+      imdbId: selectedId,
+      title,
+      year,
+      poster,
+      imdbRating: +imdbRating,
+      runtime: +runtime.split(' ').at(0),
+      userRating: userRating,
+      // plot,
+      // released,
+      // actors,
+      // director,
+      // genre,
+    };
+    onAddWatched(newWatchedMovie);
+  }
+
+  // console.log('watched', watched);
+
   return (
     <div className='details'>
       {isLoading ? (
@@ -71,9 +106,25 @@ export default function MovieDetails({ selectedId, setSelectedId, apiKey }) {
           </header>
           <section>
             <div className='rating'>
-              <StarRating maxRating={10} size={24} />
-            </div>
+              {!isWatched ? (
+                <>
+                  <StarRating
+                    maxRating={10}
+                    size={24}
+                    onSetRating={setUserRating}
+                  />
 
+                  {userRating > 0 && (
+                    <button className='btn-add' onClick={addHandler}>
+                      Add to watched
+                    </button>
+                  )}
+                </>
+              ) : (
+                <p>You rated this movie {watchedUserRating}</p>
+              )}
+            </div>
+            {/* <StarRating maxRating={10} size={24} /> */}
             {/* <div className='rating'>
           {!isWatched ? (
             <>
