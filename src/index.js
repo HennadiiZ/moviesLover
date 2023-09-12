@@ -10,7 +10,7 @@ root.render(
   <React.StrictMode>
     <App />
 
-    <StarRating maxRating={5} color={'#fcc419'} size={48} />
+    {/* <StarRating maxRating={5} color={'#fcc419'} size={48} />
 
     <StarRating
       maxRating={5}
@@ -23,7 +23,7 @@ root.render(
       className='test'
       defaultRating={3}
       onSetRating={{}}
-    />
+    /> */}
   </React.StrictMode>
 
   // <App />

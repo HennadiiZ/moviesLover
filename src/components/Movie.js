@@ -1,9 +1,24 @@
-export default function Movie({ movie, children, onSelectedMovie }) {
+// export default function Movie({ movie, children, onSelectedMovie }) {
+//   return (
+//     <li onClick={() => onSelectedMovie(movie.imdbID)}>
+//       <img src={movie.Poster} alt={`${movie.Title} poster`} />
+//       <h3>{movie.Title}</h3>
+//       {children}
+//     </li>
+//   );
+// }
+
+export default function Movie({ movie, onSelectMovie }) {
   return (
-    <li onClick={() => onSelectedMovie(movie.imdbID)}>
+    <li onClick={() => onSelectMovie(movie.imdbID)}>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3>{movie.Title}</h3>
-      {children}
+      <div>
+        <p>
+          <span>🗓</span>
+          <span>{movie.Year}</span>
+        </p>
+      </div>
     </li>
   );
 }
