@@ -43,7 +43,7 @@ export default function MovieDetails({
     };
 
     onAddWatched(newWatchedMovie);
-    // onCloseMovie();
+    onCloseMovie();
   }
 
   // useEffect();
@@ -78,18 +78,18 @@ export default function MovieDetails({
     [selectedId]
   );
 
-  // useEffect(
-  //   function () {
-  //     if (!title) return;
-  //     document.title = `Movie | ${title}`;
+  useEffect(
+    function () {
+      if (!title) return;
+      document.title = `Movie | ${title}`;
 
-  //     return function () {
-  //       document.title = 'usePopcorn';
-  //       // console.log(`Clean up effect for movie ${title}`);
-  //     };
-  //   },
-  //   [title]
-  // );
+      return function () {
+        document.title = 'Movie Lover';
+        console.log(`Clean up effect for movie ${title}`);
+      };
+    },
+    [title]
+  );
 
   return (
     <div className='details'>
