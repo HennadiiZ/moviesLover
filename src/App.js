@@ -80,9 +80,9 @@ export default function App() {
     setWatched((watched) => [...watched, movie]);
   }
 
-  // function handleDeleteWatched(id) {
-  //   setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
-  // }
+  function handleDeleteWatched(id) {
+    setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
+  }
 
   return (
     <>
@@ -111,11 +111,11 @@ export default function App() {
           ) : (
             <>
               <Summary watched={watched} />
-              <WatchedMoviesList watched={watched} />
-              {/* <WatchedMoviesList
+              {/* <WatchedMoviesList watched={watched}/> */}
+              <WatchedMoviesList
                 watched={watched}
                 onDeleteWatched={handleDeleteWatched}
-              /> */}
+              />
             </>
           )}
         </Box>
