@@ -1,15 +1,4 @@
-import { useState } from 'react';
-import Summary from './Summary';
-import WatchedMovieList from './WatchedMovieList';
-
 export default function WatchedBox({ tempWatchedData, average }) {
-  //   const [isOpen2, setIsOpen2] = useState(true);
-
-  //   const [watched, setWatched] = useState(tempWatchedData);
-  //   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
-  //   const avgUserRating = average(watched.map((movie) => movie.userRating));
-  //   const avgRuntime = average(watched.map((movie) => movie.runtime));
-
   return (
     <div className='box'>
       {/* <button
