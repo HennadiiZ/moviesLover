@@ -18,9 +18,6 @@ export default function MovieDetails({
     (movie) => movie.imdbID === selectedId
   )?.userRating;
 
-  // console.log(isWatched);
-  // console.log(watched);
-
   const {
     Title: title,
     Year: year,
@@ -45,7 +42,7 @@ export default function MovieDetails({
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        // console.log(data);
+
         if (data.Response === 'True') {
           setSelectedMovie(data);
         } else {
@@ -70,16 +67,9 @@ export default function MovieDetails({
       imdbRating: +imdbRating,
       runtime: +runtime.split(' ').at(0),
       userRating: userRating,
-      // plot,
-      // released,
-      // actors,
-      // director,
-      // genre,
     };
     onAddWatched(newWatchedMovie);
   }
-
-  // console.log('watched', watched);
 
   return (
     <div className='details'>
@@ -124,27 +114,6 @@ export default function MovieDetails({
                 <p>You rated this movie {watchedUserRating}</p>
               )}
             </div>
-            {/* <StarRating maxRating={10} size={24} /> */}
-            {/* <div className='rating'>
-          {!isWatched ? (
-            <>
-              <StarRating
-                maxRating={10}
-                size={24}
-                onSetRating={setUserRating}
-              />
-              {userRating > 0 && (
-                <button className='btn-add' onClick={handleAdd}>
-                  + Add to list
-                </button>
-              )}
-            </>
-          ) : (
-            <p>
-              You rated with movie {watchedUserRating} <span>⭐️</span>
-            </p>
-          )}
-        </div> */}
             <p>
               <em>{plot}</em>
             </p>

@@ -23,8 +23,6 @@ const apiKey2 = '17b3c4c2';
 const apiKey = '63ad7598';
 
 export default function App() {
-  // const [movies, setMovies] = useState(tempMovieData);
-  // const [watched, setWatched] = useState(tempWatchedData);
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]); //-------------
   const [isLoading, setIsLoading] = useState(false);
@@ -75,8 +73,8 @@ export default function App() {
   }
 
   function AddWatchedMovieHandler(movie) {
-    setSelectedId(null);
     setWatched((watched) => [...watched, movie]);
+    setSelectedId(null);
   }
 
   return (
