@@ -9,6 +9,13 @@ export default function MovieDetails({
   onAddWatched,
   watched,
 }) {
+  // export default function MovieDetails({
+  //   selectedId,
+  //   onCloseMovie,
+  //   apiKey,
+  //   onAddWatched,
+  //   watched,
+  // }) {
   const [selectedMovie, setSelectedMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState('');
@@ -78,6 +85,7 @@ export default function MovieDetails({
       ) : (
         <>
           <header>
+            {/* <button className='btn-back' onClick={onCloseMovie}> */}
             <button className='btn-back' onClick={() => setSelectedId(null)}>
               &larr;
             </button>

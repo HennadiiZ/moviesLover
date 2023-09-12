@@ -72,6 +72,12 @@ export default function App() {
     setSelectedId((movieId) => (movieId === id ? null : id));
   }
 
+  //-------
+  // function handleCloseMovie() {
+  //   setSelectedId(null);
+  // }
+  //--------
+
   function AddWatchedMovieHandler(movie) {
     setWatched((watched) => [...watched, movie]);
     setSelectedId(null);
@@ -106,6 +112,12 @@ export default function App() {
               onAddWatched={AddWatchedMovieHandler}
               watched={watched}
             />
+            {/* <MovieDetails
+              selectedId={selectedId}
+              onCloseMovie={handleCloseMovie}
+              onAddWatched={AddWatchedMovieHandler}
+              watched={watched}
+            /> */}
           </Box>
         ) : (
           <Box>
