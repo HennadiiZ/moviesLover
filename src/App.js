@@ -16,10 +16,16 @@ const API_KEY = '63ad7598';
 export default function App() {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [selectedId, setSelectedId] = useState(null);
+  // const [watched, setWatched] = useState([]);
+
+  const [watched, setWatched] = useState(() => {
+    const storedValue = JSON.parse(localStorage.getItem('watchedMovies'));
+    return storedValue;
+  });
+  // const [watchedInLocal, setWatchedInLocal] = useState([]);
 
   useEffect(
     function () {
@@ -69,6 +75,14 @@ export default function App() {
     [query]
   );
 
+  useEffect(() => {
+    localStorage.setItem('watchedMovies', JSON.stringify(watched));
+  }, [watched]);
+
+  // useEffect(() => {
+  //   setWatched(JSON.parse(localStorage.getItem('watchedMovies')));
+  // }, [watched]);
+
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
   }
@@ -79,6 +93,16 @@ export default function App() {
 
   function handleAddWatched(movie) {
     setWatched((watched) => [...watched, movie]);
+
+    // const setStorage = localStorage.setItem(
+    //   'watchedMovies',
+    //   JSON.stringify([...watched, movie])
+    // );
+    // const getStorage = JSON.parse(localStorage.getItem('watchedMovies'));
+    // // localStorage.clear();
+    // setWatchedInLocal((items) => [...items, getStorage]);
+
+    // console.log(watchedInLocal);
   }
 
   function handleDeleteWatched(id) {
@@ -116,6 +140,10 @@ export default function App() {
                 watched={watched}
                 onDeleteWatched={handleDeleteWatched}
               />
+              {/* <WatchedMoviesList
+                watched={watchedInLocal}
+                onDeleteWatched={handleDeleteWatched}
+              /> */}
             </>
           )}
         </Box>
