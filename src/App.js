@@ -10,6 +10,7 @@ import MovieList from './components/MovieList';
 import MovieDetails from './components/MovieDetails';
 import Summary from './components/Summary';
 import WatchedMoviesList from './components/WatchedMovieList';
+import Calculator from './components/Calculator';
 
 const API_KEY = '63ad7598';
 
@@ -121,6 +122,7 @@ export default function App() {
           )}
         </Box>
       </Main>
+      <Calculator />
     </>
   );
 }
