@@ -1,13 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
+
+import { useKey } from '../customHooks/useKey.js';
 import StarRating from './StarRating';
 import Loader from './Loader';
 const API_KEY = '63ad7598';
 
 export default function MovieDetails({
   selectedId,
-  onCloseMovie,
   onAddWatched,
   watched,
+  onCloseMovie,
 }) {
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -34,22 +36,24 @@ export default function MovieDetails({
     Genre: genre,
   } = movie;
 
-  useEffect(
-    function () {
-      function callback(e) {
-        if (e.code === 'Escape') {
-          onCloseMovie();
-        }
-      }
+  useKey('Escape', onCloseMovie);
 
-      document.addEventListener('keydown', callback);
+  // useEffect(
+  //   function () {
+  //     function callback(e) {
+  //       if (e.code === 'Escape') {
+  //         onCloseMovie();
+  //       }
+  //     }
 
-      return function () {
-        document.removeEventListener('keydown', callback);
-      };
-    },
-    [onCloseMovie]
-  );
+  //     document.addEventListener('keydown', callback);
+
+  //     return function () {
+  //       document.removeEventListener('keydown', callback);
+  //     };
+  //   },
+  //   [onCloseMovie]
+  // );
 
   useEffect(
     function () {
