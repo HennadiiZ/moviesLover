@@ -25,7 +25,7 @@ export default function App() {
 
   const { movies, isLoading, error } = useMovies(query, handleCloseMovie);
 
-  const [watched, setWatched] = useLocalStorageState();
+  const [watched, setWatched] = useLocalStorageState([], 'watchedMovies');
   // useEffect(() => {
   //   localStorage.setItem('watchedMovies', JSON.stringify(watched));
   // }, [watched]);
