@@ -14,7 +14,6 @@ import MovieList from './components/MovieList';
 import MovieDetails from './components/MovieDetails';
 import Summary from './components/Summary';
 import WatchedMoviesList from './components/WatchedMovieList';
-import AppGeoLocation from './components/AppGeoLocation';
 
 export default function App() {
   const [query, setQuery] = useState('');
@@ -41,7 +40,6 @@ export default function App() {
 
   return (
     <>
-      <AppGeoLocation />
       <NavBar>
         <Search query={query} setQuery={setQuery} />
         <NumberResults movies={movies} />
