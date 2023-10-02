@@ -8,6 +8,7 @@ const containerStyle = {
 
 const starContainerStyle = {
   display: 'flex',
+  flexWrap: 'wrap',
   alignItems: 'center',
 };
 
