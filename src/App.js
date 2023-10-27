@@ -76,3 +76,6 @@ export default function App() {
     </>
   );
 }
+
+// npm run build
+// npm start
